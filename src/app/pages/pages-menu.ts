@@ -17,6 +17,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
     group: true,
   },
   {
+    title: 'Empresa',
+    icon: 'layout-outline',
+    children: [
+      {
+        title: 'Informações',
+        link: '/pages/empresa/consulta',
+      },
+    ],
+  },
+  {
     title: 'Layout',
     icon: 'layout-outline',
     children: [

@@ -1,0 +1,140 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>Empresa</nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+
+            <div class="form-group col-md-7 mb-3">
+              <label for="exampleInputEmail1" class="label">Email address <span style=color:red>*</span></label>
+              <input type="email" nbInput fullWidth id="exampleInputEmail1">
+              <div *ngIf="submitted && form.nome.errors?.required" class="caption status-danger">
+                Email is required!
+              </div>
+            </div>
+
+            <div class="form-group col-md-7 mb-3">
+              <label for="nome" class="label">Nome</label>
+              <input formControlName="nome" nbInput fullWidth name="nome" id="nome" maxlength="100" type="text" />
+              <div *ngIf="submitted && form.nome.errors?.required" class="caption status-danger" style="display:block">
+                Campo obrigatório.
+              </div>
+            </div>
+
+            <div class="form-group col-md-5 mb-3">
+              <label class="label">CNPJ</label>
+              <input formControlName="cnpj" nbInput fullWidth pattern="[0-9]{2}[.]{1}[0-9]{3}[.]{1}[0-9]{3}[/]{1}[0-9]{4}[-]{1}[0-9]{2}" digitOnly [textMask]="{mask: maskCNPJ}" name="cpf" id="cpf" type="text"/>
+              <div *ngIf="submitted && form?.cnpj?.errors?.required" class="caption status-danger" style="display:block">
+                Campo inválido.
+              </div>
+            </div>
+
+            <div class="form-group col-md-7 mb-3">
+              <label class="label">E-mail</label>
+              <input formControlName="email" nbInput fullWidth type="email" name="email" id="email"  maxlength="100"/>
+              <div *ngIf="submitted && form.email.errors?.required" class="caption status-danger" style="display:block">
+                Campo obrigatório.
+              </div>
+              <div *ngIf="submitted && form.email.errors?.email" class="caption status-danger" style="display:block">
+                Campo inválido.
+              </div>
+            </div>
+
+            <div class="form-group col-md-2 mb-3">
+              <label class="label">Telefone Fixo</label>
+              <input formControlName="telFixo1" nbInput fullWidth [textMask]="{mask: maskTel}" type="text" name="telFixo1" id="telFixo1" />
+              <div *ngIf="submitted && form.telFixo1.errors" class="caption status-danger" style="display:block">
+                Campo inválido.
+              </div>
+            </div>
+
+            <div class="form-group col-md-2 mb-3">
+              <label class="label">Telefone Celular</label>
+              <input formControlName="telCel" nbInput fullWidth [textMask]="{mask: maskCel}" type="text" name="telCel" id="telCel" />
+              <div *ngIf="submitted && form.telCel.errors" class="caption status-danger" style="display:block">
+                Campo inválido.
+              </div>
+            </div>
+
+            <div class="form-group col-md-7 mb-3">
+              <label class="label">Busca de Logradouro no Google</label>
+              <input #addresstext id="autocomplete" nbInput fullWidth placeholder="Digite o Endereço ou CEP" onFocus="geolocate()" type="text" size="100"/>
+              <!-- <input ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" placeholder="Digite o Endereço ou CEP" size="100"/> -->
+            </div>
+
+            <div class="form-group col-md-5 mb-3">
+              <label class="label">Coordenadas</label>
+              <div class="input-group">
+                <input formControlName="coordenadas" nbInput fullWidth type="text" name="coordenadas" id="coordenadas" readonly/>
+                <div class="input-group-append">
+                  <!-- <button (click)="abrirMapa()" class="btn btn-outline-info" type="button" id="button-addon2">Mapa <span class="glyphicon glyphicon-map-marker text-danger"></span></button> -->
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-7 mb-3">
+              <label class="label">Endereço</label>
+              <input formControlName="endereco" nbInput fullWidth type="text" name="endereco" id="route" maxlength="100"/>
+              <div *ngIf="submitted && form.endereco.errors?.required" class="caption status-danger" style="display:block">
+                Campo obrigatório.
+              </div>
+            </div>
+
+            <div class="form-group col-md-2 mb-3">
+              <label class="label">Número</label>
+              <input formControlName="numero" nbInput fullWidth pattern="[0-9]*" digitOnly type="text" name="numero" id="street_number"  maxlength="6"/>
+              <div *ngIf="submitted && form.numero.errors?.required" class="caption status-danger" style="display:block">
+                Campo obrigatório.
+              </div>
+            </div>
+
+            <div class="form-group col-md-3 mb-3">
+              <label class="label">Complemento</label>
+              <input formControlName="complemento" nbInput fullWidth type="text" name="compl" id="compl" maxlength="50">
+            </div>
+
+            <div class="form-group col-md-4 mb-3">
+              <label class="label">Município</label>
+              <input formControlName="municipio" nbInput fullWidth type="text" name="municipio" id="locality" maxlength="100"/>
+              <div *ngIf="submitted && form.municipio.errors?.required" class="caption status-danger" style="display:block">
+                Campo obrigatório.
+              </div>
+            </div>
+
+            <div class="form-group col-md-3 mb-3">
+              <label class="label">Estado</label>
+              <input formControlName="uf" nbInput fullWidth type="text" name="estado" id="administrative_area_level_1"  maxlength="50"/>
+              <div *ngIf="submitted && form.uf.errors?.required" class="caption status-danger" style="display:block">
+                Campo obrigatório.
+              </div>
+            </div>
+
+            <div class="form-group col-md-2 mb-3">
+              <label class="label">CEP</label>
+              <input formControlName="cep" nbInput fullWidth pattern="[0-9]{5}[-]{1}[0-9]{3}" digitOnly [textMask]="{mask: maskCEP}" type="text" name="cep" id="postal_code" maxlength="10"/>
+              <div *ngIf="submitted && form.cep.errors" class="caption status-danger" style="display:block">
+                Campo inválido.
+              </div>
+            </div>
+
+            <div class="form-group col-md-3 mb-3">
+              <label class="label">País</label>
+              <input formControlName="pais" nbInput fullWidth type="text" name="pais" id="country"  maxlength="50"/>
+              <div *ngIf="submitted && form.pais.errors?.required" class="caption status-danger" style="display:block">
+                Campo obrigatório.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="offset-sm-11 col-sm-1">
+                <button type="submit" nbButton status="primary">Salvar</button>
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
