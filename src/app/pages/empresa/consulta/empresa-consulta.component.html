@@ -1,0 +1,93 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>Empresa</nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+
+          <form novalidate="" aria-labelledby="title" class="ng-pristine ng-invalid ng-touched">
+            <div class="form-control-group">
+              <label for="input-email" class="label">Email address:</label>
+              <input nbinput="" fullwidth="" name="email" id="input-email" pattern=".+@.+\..+" placeholder="Email address" fieldsize="large" autofocus="" ng-reflect-full-width="" ng-reflect-field-size="large" ng-reflect-pattern=".+@.+\..+" ng-reflect-name="email" ng-reflect-status="basic" ng-reflect-required="true" class="input-full-width size-large status-basic shape-rectangle ng-pristine ng-invalid nb-transition ng-touched" required="" control-id="ControlID-4" aria-invalid="true">
+              <p class="caption status-danger ng-star-inserted"> Email is required! </p>
+            </div>
+
+            <div class="form-control-group">
+              <span class="label-with-link">
+                <label for="input-password" class="label">Password:</label>
+                <a routerlink="../request-password" class="forgot-password caption-2" ng-reflect-router-link="../request-password" href="/auth/request-password">Forgot Password?</a></span>
+                <input nbinput="" fullwidth="" name="password" type="password" id="input-password" placeholder="Password" fieldsize="large" ng-reflect-full-width="" ng-reflect-field-size="large" ng-reflect-name="password" ng-reflect-status="basic" ng-reflect-required="true" ng-reflect-minlength="4" ng-reflect-maxlength="50" class="input-full-width size-large status-basic shape-rectangle ng-untouched ng-pristine ng-invalid nb-transition" required="" minlength="4" maxlength="50" control-id="ControlID-5">
+
+          </div>
+          <div class="form-control-group accept-group">
+            <nb-checkbox name="rememberMe" _nghost-vfp-c148="" ng-reflect-name="rememberMe" class="status-basic ng-untouched ng-pristine ng-valid ng-star-inserted nb-transition"><label _ngcontent-vfp-c148="" class="label"><input _ngcontent-vfp-c148="" type="checkbox" class="native-input visually-hidden" control-id="ControlID-6"><span _ngcontent-vfp-c148="" class="custom-checkbox">
+          </span>
+          <span _ngcontent-vfp-c148="" class="text">Remember me</span></label>
+        </nb-checkbox>
+
+          </div>
+          <button nbbutton="" fullwidth="" status="primary" size="large" class="appearance-filled full-width size-large shape-rectangle status-primary btn-disabled nb-transition" disabled="" control-id="ControlID-7"> Log In </button>
+        </form>
+
+          <div class="row">
+            <div class="form-control-group col-md-7 mb-3">
+              <label for="input-email" class="label">Nome <span style=color:red>*</span></label>
+              <input nbInput fullwidth name="email" id="email" pattern=".+@.+\..+" placeholder="Email address" fieldsize="large" autofocus class="input-full-width size-large">
+              <p class="caption status-danger ng-star-inserted"> Email is required! </p>
+            </div>
+
+            <div class="col-md-7 mb-3">
+              <label for="nome">Nome <span style=color:red>*</span></label>
+              <input formControlName="nome" type="text" nbInput fullWidth maxlength="100">
+              <div *ngIf="submitted && form.nome.errors?.required" class="invalid-feedback" style="display:block">
+                Campo obrigatório.
+              </div>
+            </div>
+
+            <div class="col-md-5 mb-3">
+              <label for="nome">CNPJ <span style=color:red>*</span></label>
+              <input formControlName="nome" type="text" nbInput fullWidth maxlength="100">
+            </div>
+
+            <!-- <div class="col-md-5 mb-3">
+              <label>CNPJ</label>
+              <input formControlName="cnpj" pattern="[0-9]{2}[.]{1}[0-9]{3}[.]{1}[0-9]{3}[/]{1}[0-9]{4}[-]{1}[0-9]{2}" digitOnly [textMask]="{mask: maskCNPJ}" class="form-control" name="cpf" id="cpf" type="text"/>
+              <div *ngIf="submitted && form?.cnpj?.errors?.required" class="invalid-feedback" style="display:block">
+                Campo inválido.
+              </div>
+            </div> -->
+
+            <div class="col-md-7 mb-3">
+              <label>E-mail <span style=color:red>*</span></label>
+              <input formControlName="email" type="email" pattern=".+@.+\..+" nbInput fullWidth maxlength="100"/>
+              <div *ngIf="submitted && form.email.errors?.required" class="invalid-feedback" style="display:block">
+                Campo obrigatório.
+              </div>
+              <div *ngIf="submitted && form.email.errors?.email" class="invalid-feedback" style="display:block">
+                Campo inválido.
+              </div>
+            </div>
+
+            <!-- <div class="col-md-2 mb-3">
+              <label>Telefone Fixo</label>
+              <input formControlName="telFixo1" [textMask]="{mask: maskTel}" type="text" class="form-control" name="telFixo1" id="telFixo1" />
+              <div *ngIf="submitted && form.telFixo1.errors" class="invalid-feedback" style="display:block">
+                Campo inválido.
+              </div>
+            </div>
+
+            <div class="col-md-2 mb-3">
+              <label>Telefone Celular <span style=color:red>*</span></label>
+              <input formControlName="telCel" [textMask]="{mask: maskCel}" type="text" class="form-control" name="telCel" id="telCel" />
+              <div *ngIf="submitted && form.telCel.errors" class="invalid-feedback" style="display:block">
+                Campo inválido.
+              </div>
+            </div> -->
+
+          </div>
+
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
